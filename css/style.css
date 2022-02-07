@@ -1,0 +1,44 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+    color:white ;
+    font-style: normal;
+    box-sizing: border-box;
+    text-align: center;  
+}
+body{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+header{ 
+    width: 100%;
+    display: flex;
+    background-color: black;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-bottom : 10px ;
+    padding-top: 10px;
+}
+#logo{
+    color: rgb(245, 220, 187);
+    width: 100%;
+    font-weight:bold;
+    font-family: 'Comforter', cursive;
+    font-size: 30px;
+}
+#start{
+    border: solid white 3px;
+    border-radius: 3px 3px;
+    padding: 5px;
+}
+aside{
+    background-color: black;
+    color: black;
+    width: 25%;
+    height: 80vh;
+    padding-top: 10px;
+  
+}
