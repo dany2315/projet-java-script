@@ -6,13 +6,16 @@
     font-style: normal;
     box-sizing: border-box;
     text-align: center;  
+
 }
 body{
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
+    flex-direction: row-reverse;
 }
 header{ 
+    
     width: 100%;
     display: flex;
     background-color: black;
@@ -28,17 +31,41 @@ header{
     font-weight:bold;
     font-family: 'Comforter', cursive;
     font-size: 30px;
+    
 }
 #start{
     border: solid white 3px;
     border-radius: 3px 3px;
-    padding: 5px;
+    padding: 7px;
 }
 aside{
     background-color: black;
-    color: black;
     width: 25%;
-    height: 80vh;
+    height: 83vh;
     padding-top: 10px;
+    border-top: solid white 3px;
   
 }
+.div-top{
+    margin: 15px auto;
+}
+#liste-top-3{
+    margin-top: 50px;
+    font-weight: bold;
+    color :rgb(245, 220, 187);
+}
+main{
+    width: 75%;
+    background-color: rgb(245, 220, 187);
+    position: relative;
+}
+#barre{
+    width: 4px;
+    height: 33px;
+    background-color:black ;
+    position: absolute;
+    top: 45px;
+    right: 78px;
+    
+}
+
