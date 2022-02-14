@@ -1,6 +1,7 @@
 var body = document.querySelector("body")
 var header = document.querySelector("header")
 var start = document.getElementById("start")
+var pause =document.getElementById("pause")
 var divFlou = document.getElementById("div-flou")
 var barre = document.getElementById("barre")
 var meilleurScore = 0
@@ -87,6 +88,11 @@ function interval() {
             
         }
     },1)  
+}
+pause.addEventListener("click",pausing)
+
+function pausing() {
+    clearInterval(set,0)
 }
 
 //barre.addEventListener()
