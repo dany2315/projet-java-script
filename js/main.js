@@ -95,4 +95,4 @@ function pausing() {
     clearInterval(set,0)
 }
 
-//barre.addEventListener()
+barre.addEventListener("")
