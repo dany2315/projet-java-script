@@ -58,7 +58,8 @@ submit.addEventListener("click",function () {
 })
 
 
-start.addEventListener("click",interval,)
+start.addEventListener("click",interval )
+start.addEventListener("click",rotation)
 var set = null
 const chrono={
     sec:{val:59 , dom:document.getElementById("divsec")},
@@ -66,6 +67,7 @@ const chrono={
 }
 
 function interval() {
+    start.removeEventListener("click",interval)
     
     set = setInterval(function () {
         chrono.milisec.val--
@@ -90,9 +92,30 @@ function interval() {
     },1)  
 }
 pause.addEventListener("click",pausing)
-
+pause.addEventListener("click",stopRotation)
 function pausing() {
     clearInterval(set,0)
+    start.addEventListener("click",interval)
+    
 }
 
-barre.addEventListener("")
+
+function rotation() {
+    barre.style.animationName="rotating"
+    barre.style.animationDuration="2s"
+    barre.style.animationTimingFunction="linear"
+    barre.style.animationIterationCount="infinite"
+    barre.style.animationPlayState="running"
+
+}
+
+function stopRotation() {
+    barre.style.animationPlayState="paused"
+}
+
+
+
+barre.addEventListener("click",changePosition)
+function changePosition(e) {
+    
+}

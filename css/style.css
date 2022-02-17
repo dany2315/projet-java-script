@@ -74,6 +74,7 @@ main{
     position: absolute;
     top: 45px;
     right: 78px;
+    transform-origin: 50% 50%
     
 }
 #div-flou{
@@ -120,4 +121,12 @@ main{
     background-color:rgb(245, 220, 187) ;
     border-radius: 5px 5px;
     
+}
+@-webkit-keyframes rotating {
+    from{
+        -webkit-transform: rotate(0deg);
+    }
+    to{
+        -webkit-transform: rotate(360deg);
+    }
 }
