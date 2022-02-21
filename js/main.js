@@ -8,23 +8,24 @@ var meilleurScore = 0
 var meilleurNiveau = 0
 
 function verificationUser() {
+
     var userJason = localStorage.user
     userJason? welcome():login();
-
-    function welcome() {
-        divFlou.style.display="none" 
-    }
-
-    function login() {
-        divFlou.style.display="initial";
-    }
-
 }
-verificationUser()
+function welcome() {
+    divFlou.style.display="none" 
+}
 
+function login() {
+    divFlou.style.display="initial";
+}
+
+
+verificationUser()
 
 var inputNom = document.getElementById("nom")
 var inputPrenom = document.getElementById("prenom")
+var submit =document.getElementById("submit")
 
 class users{
     constructor(_nom,_prenom,_niveau,_score){
@@ -34,9 +35,8 @@ class users{
         this.score =_score;
     }
 }
-
-var submit =document.getElementById("submit")
 var user=null
+
 submit.addEventListener("click",function () {
     
 
@@ -57,6 +57,7 @@ submit.addEventListener("click",function () {
     
 })
 
+//LE BOUTON START ACTIVE LE CHRONO ET LA ROTATION DE LA BARRE
 
 start.addEventListener("click",interval )
 start.addEventListener("click",rotation)
@@ -91,14 +92,6 @@ function interval() {
         }
     },1)  
 }
-pause.addEventListener("click",pausing)
-pause.addEventListener("click",stopRotation)
-function pausing() {
-    clearInterval(set,0)
-    start.addEventListener("click",interval)
-    
-}
-
 
 function rotation() {
     barre.style.animationName="rotating"
@@ -106,7 +99,17 @@ function rotation() {
     barre.style.animationTimingFunction="linear"
     barre.style.animationIterationCount="infinite"
     barre.style.animationPlayState="running"
+}
 
+//LE BOUTON PAUSE MET EN PAUSE LE CHRONO ET LA ROTATION DE LA BARRE 
+
+pause.addEventListener("click",pausing)
+pause.addEventListener("click",stopRotation)
+
+function pausing() {
+    clearInterval(set,0)
+    start.addEventListener("click",interval)
+    
 }
 
 function stopRotation() {
@@ -116,6 +119,8 @@ function stopRotation() {
 
 
 barre.addEventListener("click",changePosition)
-function changePosition(e) {
+function changePosition() {function (event) {
+    
+}
     
 }
