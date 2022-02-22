@@ -68,7 +68,7 @@ main{
     position: relative;
 }
 #barre{
-    width: 4px;
+    width: 10px;
     height: 33px;
     background-color:black ;
     position: absolute;

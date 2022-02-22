@@ -58,9 +58,14 @@ submit.addEventListener("click",function () {
 })
 
 //LE BOUTON START ACTIVE LE CHRONO ET LA ROTATION DE LA BARRE
+var score = 0
+var scorefinal = 0
+var level = 0
 
 start.addEventListener("click",interval )
 start.addEventListener("click",rotation)
+start.addEventListener("click",changeScore)
+
 var set = null
 const chrono={
     sec:{val:59 , dom:document.getElementById("divsec")},
@@ -110,17 +115,47 @@ function pausing() {
     clearInterval(set,0)
     start.addEventListener("click",interval)
     
+    
 }
 
 function stopRotation() {
     barre.style.animationPlayState="paused"
 }
 
+var spanLevel = document.getElementById("level")
+var spanScore = document.getElementById("score")
+var y = 0
+var x = 0
+var score=0
+var level = 1
 
-
-barre.addEventListener("click",changePosition)
-function changePosition() {function (event) {
+function changeScore() {
+    barre.addEventListener("click",()=>{
+    
+        x++
+        score+=10
+        var scorefinal=score*level
+        spanScore.innerText=scorefinal
+    
+    
+        
+        if (x-y==10) {
+            y+=10
+            level++
+            spanLevel.innerText="0"+level
+        }
+        
+        if (level==5) {
+            youWin()
+        }
+    })
+}
+function stopScore(){
     
 }
+
     
-}
+
+
+
+
