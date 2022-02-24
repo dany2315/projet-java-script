@@ -8,20 +8,29 @@ var meilleurScore = 0
 var meilleurNiveau = 0
 
 function verificationUser() {
-
-    var userJason = localStorage.user
-    userJason? welcome():login();
+    return new Promise((resolve,reject)=>{
+            var userJason = localStorage.user
+        
+            if (userJason) {
+                welcome()
+                resolve()
+            }else{
+                    login()
+                    if (inscrire==true) {
+                    resolve()
+                    }
+                }
+    })
 }
+
 function welcome() {
     divFlou.style.display="none" 
+
 }
 
 function login() {
     divFlou.style.display="initial";
 }
-
-
-verificationUser()
 
 var inputNom = document.getElementById("nom")
 var inputPrenom = document.getElementById("prenom")
@@ -37,8 +46,11 @@ class users{
 }
 var user=null
 
-submit.addEventListener("click",function () {
-    
+submit.addEventListener("click",inscrire)
+
+
+function inscrire() {
+    var terminer = null
 
     if (inputNom.value =="") {
         alert("Remplisser votre nom pour jouer")
@@ -53,18 +65,44 @@ submit.addEventListener("click",function () {
         user = new users (inputNom.value,inputPrenom.value)
         var myjson =JSON.stringify(user)
         localStorage.setItem("user",myjson)
+        return terminer=true
     }
-    
-})
+     
+    return terminer
+}
+
+
+
+
+
+
+
+
+
+
 
 //LE BOUTON START ACTIVE LE CHRONO ET LA ROTATION DE LA BARRE
+verificationUser().then(startGame)
+
 var score = 0
 var scorefinal = 0
 var level = 0
 
-start.addEventListener("click",interval )
-start.addEventListener("click",rotation)
-start.addEventListener("click",changeScore)
+
+
+function startGame() {
+    start.addEventListener("click",interval)
+    start.addEventListener("click",rotation)         
+}
+
+
+start.addEventListener("click",starting)
+
+function starting() {
+    barre.addEventListener("click",changeScore)
+    barre.addEventListener("mouseover",hoverDisparait)
+}
+
 
 var set = null
 const chrono={
@@ -73,6 +111,7 @@ const chrono={
 }
 
 function interval() {
+    
     start.removeEventListener("click",interval)
     
     set = setInterval(function () {
@@ -92,9 +131,7 @@ function interval() {
                 chrono.sec.dom.innerText="0"+chrono.sec.val
             }
         }
-        if (chrono.milisec.val==0 && chrono.sec.val==0) {
-            
-        }
+        
     },1)  
 }
 
@@ -106,22 +143,6 @@ function rotation() {
     barre.style.animationPlayState="running"
 }
 
-//LE BOUTON PAUSE MET EN PAUSE LE CHRONO ET LA ROTATION DE LA BARRE 
-
-pause.addEventListener("click",pausing)
-pause.addEventListener("click",stopRotation)
-
-function pausing() {
-    clearInterval(set,0)
-    start.addEventListener("click",interval)
-    
-    
-}
-
-function stopRotation() {
-    barre.style.animationPlayState="paused"
-}
-
 var spanLevel = document.getElementById("level")
 var spanScore = document.getElementById("score")
 var y = 0
@@ -130,27 +151,54 @@ var score=0
 var level = 1
 
 function changeScore() {
-    barre.addEventListener("click",()=>{
+    x++
+    score+=10
+    var scorefinal=score*level
+    spanScore.innerText=scorefinal
+
+
     
-        x++
-        score+=10
-        var scorefinal=score*level
-        spanScore.innerText=scorefinal
+    if (x-y==10) {
+        y+=10
+        level++
+        spanLevel.innerText="0"+level
+    }
     
-    
-        
-        if (x-y==10) {
-            y+=10
-            level++
-            spanLevel.innerText="0"+level
-        }
-        
-        if (level==5) {
-            youWin()
-        }
-    })
+    if (level==5) {
+        youWin()
+    }
 }
-function stopScore(){
+function hoverDisparait() {
+    setTimeout(barre.style.display= "non",)
+}
+
+
+
+
+
+
+
+
+
+//LE BOUTON PAUSE MET EN PAUSE LE CHRONO ET LA ROTATION DE LA BARRE 
+pause.addEventListener("click",pausing)
+pause.addEventListener("click",stopRotation)
+
+function pausing() {
+    clearInterval(set,0)
+    start.addEventListener("click",interval)   
+    barre.removeEventListener("click",changeScore)
+    barre.removeEventListener("mouseover",hoverDisparait)
+}
+
+function stopRotation() {
+    barre.style.animationPlayState="paused"
+}
+
+    
+
+    
+function youWin(){
     
 }
 
