@@ -91,12 +91,12 @@ var level = 0
 
 
 function startGame() {
-    start.addEventListener("click",interval)
-    start.addEventListener("click",rotation)         
+start.addEventListener("click",interval)
+start.addEventListener("click",rotation)
+start.addEventListener("click",starting)
+
 }
 
-
-start.addEventListener("click",starting)
 
 function starting() {
     barre.addEventListener("click",changeScore)
@@ -111,10 +111,10 @@ const chrono={
 }
 
 function interval() {
-    
+
     start.removeEventListener("click",interval)
     
-    set = setInterval(function () {
+    set = setInterval( ()=> {
         chrono.milisec.val--
         chrono.milisec.dom.innerText=chrono.milisec.val
         if (chrono.milisec.val<100) {
