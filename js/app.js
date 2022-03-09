@@ -50,7 +50,6 @@ submit.addEventListener("click",inscrire)
 
 
 function inscrire() {
-    var terminer = null
 
     if (inputNom.value =="") {
         alert("Remplisser votre nom pour jouer")
@@ -65,10 +64,10 @@ function inscrire() {
         user = new users (inputNom.value,inputPrenom.value)
         var myjson =JSON.stringify(user)
         localStorage.setItem("user",myjson)
-        return terminer=true
+      
     }
      
-    return terminer
+    
 }
 
 
@@ -115,33 +114,17 @@ function interval() {
     start.removeEventListener("click",interval)
     
     set = setInterval( ()=> {
-        chrono.milisec.val--
-        chrono.milisec.dom.innerText=chrono.milisec.val
-        if (chrono.milisec.val<100) {
-            chrono.milisec.dom.innerText="0"+chrono.milisec.val
-        }
-        if (chrono.milisec.val<10) {
-            chrono.milisec.dom.innerText="00"+chrono.milisec.val
-        }
-        if (chrono.milisec.val==0) {
-            chrono.milisec.val=999
-            chrono.sec.val--
-            chrono.sec.dom.innerText=chrono.sec.val
+    
+           
             if (chrono.sec.val<10) {
                 chrono.sec.dom.innerText="0"+chrono.sec.val
-            }
-        }
+            }else{ chrono.sec.val--
+                chrono.sec.dom.innerText=chrono.sec.val}
         
-    },1)  
+        
+    },1000)  
 }
 
-function rotation() {
-    barre.style.animationName="rotating"
-    barre.style.animationDuration="2s"
-    barre.style.animationTimingFunction="linear"
-    barre.style.animationIterationCount="infinite"
-    barre.style.animationPlayState="running"
-}
 
 var spanLevel = document.getElementById("level")
 var spanScore = document.getElementById("score")
@@ -149,6 +132,24 @@ var y = 0
 var x = 0
 var score=0
 var level = 1
+var time =2
+var timeFinally = time
+var timeSetTimeout=timeFinally*1000
+
+function rotation() {
+    
+
+    barre.style.animationName="rotating"
+    barre.style.animationDuration=`${timeFinally}s`
+    barre.style.animationTimingFunction="linear"
+    barre.style.animationIterationCount="infinite"
+    barre.style.animationPlayState="running"
+
+    setTimeout(function() {barre.style.display= "none"
+    gameOver()
+}, timeSetTimeout)
+}
+    
 
 function changeScore() {
     x++
@@ -161,6 +162,7 @@ function changeScore() {
     if (x-y==10) {
         y+=10
         level++
+        timeFinally=time-0.25
         spanLevel.innerText="0"+level
     }
     
@@ -169,7 +171,17 @@ function changeScore() {
     }
 }
 function hoverDisparait() {
-    setTimeout(barre.style.display= "non",)
+    barre.addEventListener("mouseover",()=>{
+        
+    })
+    
+}
+
+function gameOver() {
+    barre.removeEventListener("click",changeScore)
+    pause.removeEventListener("click",pausing)
+    pause.removeEventListener("click",stopRotation)
+    clearInterval(set,0)
 }
 
 
@@ -199,7 +211,10 @@ function stopRotation() {
 
     
 function youWin(){
-    
+    barre.removeEventListener("click",changeScore)
+    clearInterval(set,0)
+    barre.style.animationPlayState="paused"
+
 }
 
     
