@@ -138,18 +138,30 @@ var timeSetTimeout=timeFinally*1000
 
 function rotation() {
     
-
     barre.style.animationName="rotating"
     barre.style.animationDuration=`${timeFinally}s`
     barre.style.animationTimingFunction="linear"
     barre.style.animationIterationCount="infinite"
     barre.style.animationPlayState="running"
-
-    setTimeout(function() {barre.style.display= "none"
-    gameOver()
-}, timeSetTimeout)
+echappe()
+    
 }
     
+//var echappe= function (){setTimeout(function() {
+          // barre.style.display= "none" ;gameOver()}, timeSetTimeout)}
+
+
+
+    barre.addEventListener("click",(e) =>{
+        console.log(e);
+        e.screenX==Math.random*1000
+        e.screenY==Math.random*1000
+        console.log(e.clientX);
+        console.log(e.clientY);
+
+    })
+
+            
 
 function changeScore() {
     x++
